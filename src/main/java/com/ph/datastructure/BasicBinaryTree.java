@@ -28,6 +28,51 @@ public class BasicBinaryTree<X extends Comparable<X>> {
         Node node = getNode(item);
         return null != node;
     }
+    
+    public boolean delete(X item) {
+    	boolean deleted = false;
+    	if(this.root != null) {
+    		Node currentNode = getNode(item);
+    		if(null!= currentNode) {
+    			if(currentNode.getLeft() == null && currentNode.getRight()==null) {
+    				unlink(currentNode, null); // it will fail if root node is only node; NPE
+    				deleted = true;
+    			}else if(currentNode.getLeft() == null && currentNode.getRight() != null) {
+    				unlink(currentNode, currentNode.getRight());
+    				deleted = true;
+    			}else if(currentNode.getLeft() != null && currentNode.getRight() == null) {
+    				unlink(currentNode, currentNode.getLeft());
+    				deleted = true;
+    			}else {
+    				Node child = currentNode.getLeft();
+    				while(child.getLeft() == null & child.getRight() == null) {
+    					child = child.getLeft();
+    				}
+    				child.getParent().setRight(null);
+    				child.setLeft(currentNode.getLeft());
+    				child.setRight(currentNode.getRight());
+    				unlink(currentNode, child);
+    				deleted = true;
+    			}
+    		}
+    		if(deleted) {
+    			this.size --;
+    		}
+    	}
+    	return deleted;
+    }
+    
+    private void unlink(Node currentNode, Node newNode) {
+    	if(this.root == currentNode) {
+    		newNode.setLeft(currentNode.getLeft());
+    		newNode.setRight(currentNode.getRight());
+    		this.root = newNode;
+    	}else if(currentNode.getParent().getRight() == currentNode) {
+    		currentNode.getParent().setRight(newNode);
+    	}else {
+    		currentNode.getParent().setLeft(newNode);
+    	}
+    }
 
     private Node getNode(X item) {
         Node currentNode = this.root;
