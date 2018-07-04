@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: com.ph.ds.stack.impl.BasicStackTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.008 sec <<< FAILURE!
+com.ph.ds.stack.impl.BasicStackTest.testDivisionWithException()  Time elapsed: 0.006 sec  <<< FAILURE!
+java.lang.ArithmeticException: / by zero
+	at com.ph.ds.stack.impl.BasicStackTest.testDivisionWithException(BasicStackTest.java:24)
+
+com.ph.ds.stack.impl.BasicStackTest.testDefaultConstaction()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.StackOverflowError
+	at com.ph.ds.stack.impl.BasicStack.push(BasicStack.java:41)
+	at com.ph.ds.stack.impl.BasicStackTest.testDefaultConstaction(BasicStackTest.java:35)
+

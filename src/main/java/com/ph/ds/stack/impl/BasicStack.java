@@ -22,12 +22,12 @@ public class BasicStack<X> implements Stack<X> {
 	 */
 	private static final long serialVersionUID = -6717465172597956715L;
 	private X[] items;
-	private int size = 10;
+	private int size = 0;
 
 	@SuppressWarnings("unchecked")
 	public BasicStack() {
 		this.size = 0;
-		this.items = (X[]) new Object[size];
+		this.items = (X[]) new Object[10];
 	}
 	
 	@SuppressWarnings("unchecked")
